@@ -1,40 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from './supabase';  // Updated import path
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { supabase } from './supabase';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import Dashboard from './components/Dashboard';
+import EmailConfirmSuccess from './components/EmailConfirmSuccess';
 
 function App() {
-  const [connectionStatus, setConnectionStatus] = useState('Checking...');
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function testConnection() {
-      try {
-        const { data, error } = await supabase.auth.getSession();
-        if (error) {
-          setConnectionStatus('Connection Error');
-          console.error('Supabase connection error:', error);
-        } else {
-          setConnectionStatus('Connected to Supabase!');
-          console.log('Supabase connection successful');
-        }
-      } catch (error) {
-        setConnectionStatus('Connection Error');
-        console.error('Error:', error);
-      }
-    }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
 
-    testConnection();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
-        <h1 className="text-2xl font-bold text-center mb-4">
-          Supabase Connection Test
-        </h1>
-        <p className={`text-center ${connectionStatus.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
-          {connectionStatus}
-        </p>
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-xl text-gray-600">Loading...</div>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <Router>
+      <Routes>
+        <Route 
+          path="/login" 
+          element={session ? <Navigate to="/dashboard" /> : <Login />} 
+        />
+        <Route 
+          path="/signup" 
+          element={session ? <Navigate to="/dashboard" /> : <SignUp />} 
+        />
+        <Route 
+          path="/dashboard" 
+          element={session ? <Dashboard /> : <Navigate to="/login" />} 
+        />
+        <Route path="/email-confirm-success" element={<EmailConfirmSuccess />} />
+        <Route 
+          path="/" 
+          element={<Navigate to={session ? "/dashboard" : "/login"} />} 
+        />
+      </Routes>
+    </Router>
   );
 }
 
