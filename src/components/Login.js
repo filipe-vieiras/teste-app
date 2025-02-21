@@ -32,7 +32,7 @@ function Login() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-center mb-8">Login</h1>
+        <h1 className="text-2xl font-bold text-center mb-8">BrokenMachines</h1>
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-md p-4 mb-4">
             {error}
@@ -61,7 +61,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className={`w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 
+            className={`w-full bg-[#151932] text-white py-2 px-4 rounded-md hover:bg-opacity-90 
               ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={isLoading}
           >
@@ -69,7 +69,7 @@ function Login() {
           </button>
         </form>
         <div className="mt-6 text-center">
-          <Link to="/signup" className="text-blue-600 hover:text-blue-800">
+          <Link to="/signup" className="text-[#151932] hover:text-opacity-80">
             Don't have an account? Sign up
           </Link>
         </div>

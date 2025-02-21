@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { supabase } from './supabase';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard';  // Fixed capitalization
 import EmailConfirmSuccess from './components/EmailConfirmSuccess';
+// Remove Lean Canvas import
 
 function App() {
   const [session, setSession] = useState(null);
@@ -37,23 +38,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route 
-          path="/login" 
-          element={session ? <Navigate to="/dashboard" /> : <Login />} 
-        />
-        <Route 
-          path="/signup" 
-          element={session ? <Navigate to="/dashboard" /> : <SignUp />} 
-        />
-        <Route 
-          path="/dashboard" 
-          element={session ? <Dashboard /> : <Navigate to="/login" />} 
-        />
+        <Route path="/login" element={session ? <Navigate to="/dashboard" /> : <Login />} />
+        <Route path="/signup" element={session ? <Navigate to="/dashboard" /> : <SignUp />} />
+        <Route path="/dashboard" element={session ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/email-confirm-success" element={<EmailConfirmSuccess />} />
-        <Route 
-          path="/" 
-          element={<Navigate to={session ? "/dashboard" : "/login"} />} 
-        />
+        <Route path="/" element={<Navigate to={session ? "/dashboard" : "/login"} />} />
+        {/* Remove Lean Canvas route */}
       </Routes>
     </Router>
   );
