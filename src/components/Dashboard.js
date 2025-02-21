@@ -9,6 +9,7 @@ function Dashboard() {
     return localStorage.getItem('darkMode') === 'true';
   });
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState('dashboard');
 
   useEffect(() => {
     const checkUser = async () => {
@@ -57,6 +58,58 @@ function Dashboard() {
     setSidebarOpen(!isSidebarOpen);
   };
 
+  const renderContent = () => {
+    switch (activeMenu) {
+      case 'dashboard':
+        return (
+          <>
+            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Getting Started
+            </h2>
+            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
+              Welcome to your dashboard! You've successfully logged in to your account.
+            </p>
+          </>
+        );
+      case 'team':
+        return (
+          <>
+            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Team Management
+            </h2>
+            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
+              Manage your team members and their permissions here.
+            </p>
+          </>
+        );
+      case 'projects':
+        return (
+          <>
+            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Projects Overview
+            </h2>
+            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
+              View and manage all your ongoing projects.
+            </p>
+          </>
+        );
+      case 'calendar':
+        return (
+          <>
+            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Calendar
+            </h2>
+            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
+              Schedule and manage your appointments and deadlines.
+            </p>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  // Update the menu items in the return statement
   return (
     <div className={`min-h-screen flex flex-col md:flex-row ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
       {/* Mobile Menu Button */}
@@ -89,36 +142,56 @@ function Dashboard() {
         <nav className="flex-1">
           <ul className="space-y-2">
             <li>
-              <a href="#" className="flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white">
+              <button
+                onClick={() => setActiveMenu('dashboard')}
+                className={`w-full flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white ${
+                  activeMenu === 'dashboard' ? 'bg-white bg-opacity-10' : ''
+                }`}
+              >
                 <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
                 Dashboard
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" className="flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white">
+              <button
+                onClick={() => setActiveMenu('team')}
+                className={`w-full flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white ${
+                  activeMenu === 'team' ? 'bg-white bg-opacity-10' : ''
+                }`}
+              >
                 <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
                 Team
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" className="flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white">
+              <button
+                onClick={() => setActiveMenu('projects')}
+                className={`w-full flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white ${
+                  activeMenu === 'projects' ? 'bg-white bg-opacity-10' : ''
+                }`}
+              >
                 <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
                 Projects
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" className="flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white">
+              <button
+                onClick={() => setActiveMenu('calendar')}
+                className={`w-full flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white ${
+                  activeMenu === 'calendar' ? 'bg-white bg-opacity-10' : ''
+                }`}
+              >
                 <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 Calendar
-              </a>
+              </button>
             </li>
             
             {/* Dark Mode Button */}
@@ -160,12 +233,7 @@ function Dashboard() {
           <div className={`${
             darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
           } rounded-lg shadow-lg p-4 md:p-6 border`}>
-            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Getting Started
-            </h2>
-            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-              Welcome to your dashboard! You've successfully logged in to your account.
-            </p>
+            {renderContent()}
           </div>
         </DashboardLayout>
       </div>
