@@ -1,5 +1,5 @@
 import { Sidebar } from 'flowbite-react';
-import { HiChartPie, HiUsers, HiFolder, HiCalendar, HiLogout } from 'react-icons/hi';
+import { HiChartPie, HiUsers, HiFolder, HiCalendar, HiLogout, HiTemplate } from 'react-icons/hi';
 
 export default function FlowbiteLayout({ children, darkMode, activeMenu, setActiveMenu, handleSignOut }) {
   return (
@@ -18,6 +18,14 @@ export default function FlowbiteLayout({ children, darkMode, activeMenu, setActi
                 onClick={() => setActiveMenu('dashboard')}
               >
                 Dashboard
+              </Sidebar.Item>
+              <Sidebar.Item 
+                href="#" 
+                icon={HiTemplate}
+                active={activeMenu === 'leancanvas'}
+                onClick={() => setActiveMenu('leancanvas')}
+              >
+                Lean Canvas
               </Sidebar.Item>
               <Sidebar.Item 
                 href="#" 
