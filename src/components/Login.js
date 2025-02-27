@@ -32,7 +32,9 @@ function Login() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-center mb-8">BrokenMachines</h1>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Stays</h2>
+        </div>
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-md p-4 mb-4">
             {error}

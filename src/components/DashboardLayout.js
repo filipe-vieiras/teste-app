@@ -21,7 +21,7 @@ function DashboardLayout({
         darkMode ? 'bg-gray-800' : 'bg-[#151932]'
       } min-h-screen p-4 flex flex-col`}>
         <div className="flex items-center justify-between mb-8">
-          <span className="text-white text-2xl font-semibold">BrokenMachines</span>
+          <span className="text-white text-2xl font-semibold">Stays</span>
           <button onClick={toggleSidebar} className="md:hidden text-white">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import DashboardLayout from './DashboardLayout';
+import { fetchNPSData } from '../services/trackcoService';
+import BusinessCanvas from './BusinessCanvas/BusinessCanvas';
 
 // Add ContentRenderer component
 function ContentRenderer({ darkMode, activeMenu }) {
@@ -10,55 +12,15 @@ function ContentRenderer({ darkMode, activeMenu }) {
         return (
           <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
             <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Getting Started
+              Dashboard
             </h2>
-            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-              Welcome to your dashboard! You've successfully logged in to your account.
-            </p>
           </div>
         );
-      case 'team':
-        return (
-          <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
-            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Team Management
-            </h2>
-            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-              Manage your team members and their permissions here.
-            </p>
-          </div>
-        );
-      case 'projects':
-        return (
-          <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
-            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Projects Overview
-            </h2>
-            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-              View and manage all your ongoing projects.
-            </p>
-          </div>
-        );
-      case 'calendar':
-        return (
-          <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
-            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Calendar
-            </h2>
-            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-              Schedule and manage your appointments and deadlines.
-            </p>
-          </div>
-        );
+      
       case 'feature1':
         return (
           <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
-            <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Feature 1
-            </h2>
-            <p className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
-              This is Feature 1. Add your content and functionality here.
-            </p>
+            <BusinessCanvas />
           </div>
         );
       // In your ContentRenderer, add this new case:
