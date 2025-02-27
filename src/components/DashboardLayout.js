@@ -21,7 +21,7 @@ function DashboardLayout({
         darkMode ? 'bg-gray-800' : 'bg-[#151932]'
       } min-h-screen p-4 flex flex-col`}>
         <div className="flex items-center justify-between mb-8">
-          <span className="text-white text-2xl font-semibold">Stays</span>
+          <span className="text-white text-2xl font-semibold">Broken Machines</span>
           <button onClick={toggleSidebar} className="md:hidden text-white">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -67,7 +67,7 @@ function DashboardLayout({
                 <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
-                Feature 1
+                Business Canvas
               </button>
             </li>
             {/* Rest of the menu items... */}

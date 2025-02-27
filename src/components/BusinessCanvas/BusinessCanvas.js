@@ -197,8 +197,8 @@ export default function BusinessCanvas() {
   };
 
   return (
-    <div className="p-4 max-w-[1400px] mx-auto">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="p-4 max-w-[2500px] mx-auto">
+      <div className="mb-4">
         <input
           type="text"
           value={title}
@@ -208,10 +208,11 @@ export default function BusinessCanvas() {
           placeholder="Canvas Title"
         />
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 h-full">
-        {/* Left Column */}
-        <div className="md:col-span-1">
+    
+      {/* Main grid container */}
+      <div className="grid min-[1600px]:grid-cols-5 grid-cols-2 gap-4">
+        {/* Key Partners */}
+        <div className="min-[1600px]:h-[800px] h-[400px] min-[1600px]:col-span-1 col-span-2">
           <CanvasSection
             key="key_partners"
             sectionKey="key_partners"
@@ -221,18 +222,35 @@ export default function BusinessCanvas() {
             onUpdate={(items) => updateSection('key_partners', items)}
           />
         </div>
-
-        {/* Center Column */}
-        <div className="md:col-span-3 grid grid-rows-3 gap-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <CanvasSection
-              key="key_activities"
-              sectionKey="key_activities"
-              title={canvas.key_activities.title}
-              subtitle={canvas.key_activities.subtitle}
-              items={canvas.key_activities.items}
-              onUpdate={(items) => updateSection('key_activities', items)}
-            />
+    
+        {/* Middle Sections */}
+        <div className="min-[1600px]:col-span-3 col-span-2 grid min-[1600px]:grid-cols-3 grid-cols-1 gap-4">
+          {/* First Column */}
+          <div className="flex flex-col gap-4">
+            <div className="min-[1600px]:h-[392px] h-[400px] w-full">
+              <CanvasSection
+                key="key_activities"
+                sectionKey="key_activities"
+                title={canvas.key_activities.title}
+                subtitle={canvas.key_activities.subtitle}
+                items={canvas.key_activities.items}
+                onUpdate={(items) => updateSection('key_activities', items)}
+              />
+            </div>
+            <div className="min-[1600px]:h-[392px] h-[400px] w-full">
+              <CanvasSection
+                key="key_resources"
+                sectionKey="key_resources"
+                title={canvas.key_resources.title}
+                subtitle={canvas.key_resources.subtitle}
+                items={canvas.key_resources.items}
+                onUpdate={(items) => updateSection('key_resources', items)}
+              />
+            </div>
+          </div>
+    
+          {/* Value Propositions */}
+          <div className="min-[1600px]:h-[800px] h-[400px] w-full">
             <CanvasSection
               key="value_propositions"
               sectionKey="value_propositions"
@@ -242,28 +260,34 @@ export default function BusinessCanvas() {
               onUpdate={(items) => updateSection('value_propositions', items)}
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <CanvasSection
-              key="key_resources"
-              sectionKey="key_resources"
-              title={canvas.key_resources.title}
-              subtitle={canvas.key_resources.subtitle}
-              items={canvas.key_resources.items}
-              onUpdate={(items) => updateSection('key_resources', items)}
-            />
-            <CanvasSection
-              key="channels"
-              sectionKey="channels"
-              title={canvas.channels.title}
-              subtitle={canvas.channels.subtitle}
-              items={canvas.channels.items}
-              onUpdate={(items) => updateSection('channels', items)}
-            />
+    
+          {/* Third Column */}
+          <div className="flex flex-col gap-4">
+            <div className="min-[1600px]:h-[392px] h-[400px] w-full">
+              <CanvasSection
+                key="customer_relationships"
+                sectionKey="customer_relationships"
+                title={canvas.customer_relationships.title}
+                subtitle={canvas.customer_relationships.subtitle}
+                items={canvas.customer_relationships.items}
+                onUpdate={(items) => updateSection('customer_relationships', items)}
+              />
+            </div>
+            <div className="min-[1600px]:h-[392px] h-[400px] w-full">
+              <CanvasSection
+                key="channels"
+                sectionKey="channels"
+                title={canvas.channels.title}
+                subtitle={canvas.channels.subtitle}
+                items={canvas.channels.items}
+                onUpdate={(items) => updateSection('channels', items)}
+              />
+            </div>
           </div>
         </div>
-
-        {/* Right Column */}
-        <div className="md:col-span-1">
+    
+        {/* Customer Segments */}
+        <div className="min-[1600px]:h-[800px] h-[400px] min-[1600px]:col-span-1 col-span-2">
           <CanvasSection
             key="customer_segments"
             sectionKey="customer_segments"
@@ -273,25 +297,29 @@ export default function BusinessCanvas() {
             onUpdate={(items) => updateSection('customer_segments', items)}
           />
         </div>
-
+    
         {/* Bottom Row */}
-        <div className="md:col-span-5 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <CanvasSection
-            key="cost_structure"
-            sectionKey="cost_structure"
-            title={canvas.cost_structure.title}
-            subtitle={canvas.cost_structure.subtitle}
-            items={canvas.cost_structure.items}
-            onUpdate={(items) => updateSection('cost_structure', items)}
-          />
-          <CanvasSection
-            key="revenue_streams"
-            sectionKey="revenue_streams"
-            title={canvas.revenue_streams.title}
-            subtitle={canvas.revenue_streams.subtitle}
-            items={canvas.revenue_streams.items}
-            onUpdate={(items) => updateSection('revenue_streams', items)}
-          />
+        <div className="min-[1600px]:col-span-5 col-span-2 grid grid-cols-2 gap-4 mt-4">
+          <div className="h-[400px]">
+            <CanvasSection
+              key="cost_structure"
+              sectionKey="cost_structure"
+              title={canvas.cost_structure.title}
+              subtitle={canvas.cost_structure.subtitle}
+              items={canvas.cost_structure.items}
+              onUpdate={(items) => updateSection('cost_structure', items)}
+            />
+          </div>
+          <div className="h-[400px]">
+            <CanvasSection
+              key="revenue_streams"
+              sectionKey="revenue_streams"
+              title={canvas.revenue_streams.title}
+              subtitle={canvas.revenue_streams.subtitle}
+              items={canvas.revenue_streams.items}
+              onUpdate={(items) => updateSection('revenue_streams', items)}
+            />
+          </div>
         </div>
       </div>
     </div>
