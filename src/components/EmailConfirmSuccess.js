@@ -13,10 +13,10 @@ function EmailConfirmSuccess() {
         <h1 className="text-2xl font-bold mb-4">Email Confirmed!</h1>
         <p className="text-gray-600 mb-8">Your email has been successfully verified.</p>
         <Link
-          to="/login"
+          to="/setup-password"
           className="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700"
         >
-          Continue to Login
+          Set Up Your Password
         </Link>
       </div>
     </div>

@@ -3,6 +3,9 @@ import { supabase } from '../supabase';
 import DashboardLayout from './DashboardLayout';
 import { fetchNPSData } from '../services/trackcoService';
 import BusinessCanvas from './BusinessCanvas/BusinessCanvas';
+import Analytics from './Analytics/Analytics';
+import TeamCollaboration from './TeamCollaboration/TeamCollaboration';
+import ProjectManagement from './ProjectManagement/ProjectManagement';
 
 // Add ContentRenderer component
 function ContentRenderer({ darkMode, activeMenu }) {
@@ -14,6 +17,7 @@ function ContentRenderer({ darkMode, activeMenu }) {
             <h2 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Dashboard
             </h2>
+            <Analytics darkMode={darkMode} />
           </div>
         );
       
@@ -60,10 +64,7 @@ function ContentRenderer({ darkMode, activeMenu }) {
             {`<li>
               <button
                 onClick={() => setActiveMenu('newFeature')}
-                className={\`w-full flex items-center text-white p-2 rounded-lg 
-                  hover:bg-opacity-25 hover:bg-white \${
-                  activeMenu === 'newFeature' ? 'bg-white bg-opacity-10' : ''
-                }\`}
+                className=\`w-full flex items-center text-white p-2 rounded-lg hover:bg-opacity-25 hover:bg-white \${activeMenu === 'newFeature' ? 'bg-white bg-opacity-10' : ''}\`
               >
                 <svg className="w-6 h-6 mr-3" {...svgProps} />
                 New Feature
@@ -77,8 +78,8 @@ function ContentRenderer({ darkMode, activeMenu }) {
                     <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg text-sm overflow-x-auto">
             {`case 'newFeature':
               return (
-                <div className={\`p-4 \${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow\`}>
-                  <h2 className={\`text-xl font-semibold mb-4 \${darkMode ? 'text-white' : 'text-gray-900'}\`}>
+                <div className=\`p-4 \${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow\`>
+                  <h2 className=\`text-xl font-semibold mb-4 \${darkMode ? 'text-white' : 'text-gray-900'}\`>
                     New Feature
                   </h2>
                   <YourNewComponent />
@@ -108,11 +109,7 @@ function ContentRenderer({ darkMode, activeMenu }) {
                     <h4 className={`font-medium mb-2 ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>Dark Mode</h4>
                     <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg text-sm overflow-x-auto">
             {`// Example of dark mode classes
-            className={\`
-              bg-white dark:bg-gray-800
-              text-gray-900 dark:text-white
-              border-gray-200 dark:border-gray-700
-            \`}`}
+            className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700"`}
                     </pre>
                   </div>
       
@@ -172,6 +169,21 @@ function ContentRenderer({ darkMode, activeMenu }) {
             </div>
           </div>
         );
+      
+      case 'team':
+        return (
+          <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
+            <TeamCollaboration darkMode={darkMode} />
+          </div>
+        );
+        
+      case 'projects':
+        return (
+          <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
+            <ProjectManagement darkMode={darkMode} />
+          </div>
+        );
+        
     default:
       return null;
     }
