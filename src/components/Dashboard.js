@@ -5,9 +5,11 @@ import { fetchNPSData } from '../services/trackcoService';
 import BusinessCanvas from './BusinessCanvas/BusinessCanvas';
 import Analytics from './Analytics/Analytics';
 import TeamCollaboration from './TeamCollaboration/TeamCollaboration';
-import ProjectManagement from './ProjectManagement/ProjectManagement';
 
 // Add ContentRenderer component
+// ...contentRenderer...
+
+// No ContentRenderer, altere o case 'feature1' para 'business-canvas'
 function ContentRenderer({ darkMode, activeMenu }) {
   const renderContent = () => {
     switch (activeMenu) {
@@ -21,13 +23,13 @@ function ContentRenderer({ darkMode, activeMenu }) {
           </div>
         );
       
-      case 'feature1':
+      case 'business-canvas':  // Alterado de 'feature1' para 'business-canvas'
         return (
           <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
-            <BusinessCanvas />
+            <BusinessCanvas darkMode={darkMode} />  
           </div>
         );
-      // In your ContentRenderer, add this new case:
+      
       case 'documentation':
         return (
           <div className={`p-4 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow`}>
